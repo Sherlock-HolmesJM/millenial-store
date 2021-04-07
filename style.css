@@ -1,0 +1,234 @@
+:root {
+  --mint: #ffe9d6;
+  --red: #ff0000;
+  --orange: #ff7a00;
+  --brown: #ff9a3d;
+  --color-1: #ffcd9e;
+  --black: black;
+  --bd: 1px solid black;
+  --trans-black: rgba(0, 0, 0, 0.637);
+  --shop-card-image-height: 250px;
+  --shop-card-image-radius: 15px;
+}
+
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  min-width: 320px;
+}
+
+/* ### INTO SECTION ### */
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-1);
+  padding: 10px;
+}
+
+.intro-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+.intro-cart-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--orange);
+  border-radius: 40%;
+  width: 90px;
+  height: 50px;
+}
+.intro-cart {
+  width: 40px;
+}
+.intro-badge {
+  font-size: 30px;
+  color: var(--mint);
+}
+
+.intro-ul {
+  display: flex;
+  padding: 0;
+  list-style: none;
+}
+.intro-li {
+  margin: 5px 10px;
+  font-weight: 900;
+  font-size: 18px;
+}
+.intro-li a {
+  color: var(--black);
+  text-decoration: none;
+}
+.intro-li a:hover {
+  color: var(--orange);
+}
+
+.intro-content {
+  display: flex;
+  justify-content: space-around;
+}
+.intro-text {
+  flex-basis: 30%;
+  color: var(--orange);
+  font-size: max(6vw, 40px);
+  font-weight: bold;
+  margin: 40px 0 0 60px;
+}
+.intro-hero-div {
+  flex-basis: 70%;
+}
+.intro-hero {
+  width: 100%;
+  margin: none;
+}
+
+.intro-btn-div {
+  display: flex;
+  justify-content: center;
+}
+.intro-btn {
+  background: var(--orange);
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  font-weight: 900;
+  font-size: 20px;
+}
+.intro-btn-link {
+  color: var(--mint);
+  text-decoration: none;
+}
+
+/* ### ABOUT SECTION ### */
+
+.about {
+  background-color: var(--black);
+  color: var(--mint);
+  line-height: 30px;
+  padding: 30px;
+  font-size: 20px;
+}
+
+/* ### SHOP SECTION ### */
+
+.shop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.shop-title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.shop-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.shop-card {
+  position: relative;
+  margin: 10px;
+  width: 252px;
+  text-align: center;
+  background-color: var(--mint);
+  border-top-left-radius: var(--shop-card-image-radius);
+  border-top-right-radius: var(--shop-card-image-radius);
+}
+.shop-card:hover .shop-card-hover {
+  /* display: block; */
+  opacity: 1;
+}
+.shop-card-title {
+  margin: 5px 0 17px 0;
+}
+.shop-card-image {
+  width: 100%;
+  height: var(--shop-card-image-height);
+  border-radius: var(--shop-card-image-radius);
+}
+.shop-card-btn {
+  color: var(--black);
+  background: var(--orange);
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 10px;
+  width: 200px;
+  margin-bottom: 10px;
+}
+.shop-card-hover {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  opacity: 0;
+  height: var(--shop-card-image-height);
+  background: var(--trans-black);
+  color: var(--mint);
+  border-radius: var(--shop-card-image-radius);
+  width: 100%;
+  transition: all 0.5s;
+}
+.shop-card-hover-title {
+  text-decoration: underline;
+}
+
+/* ### FOOTER SECTION ### */
+
+.footer {
+  display: flex;
+  background-color: var(--black);
+  justify-content: space-between;
+  color: var(--mint);
+  padding: 20px;
+  margin-top: 30px;
+}
+.footer-ems-svg {
+  margin-right: 10px;
+}
+.footer-text {
+  text-align: right;
+}
+/* ### MEDIA QUERIES ### */
+
+@media screen and (max-width: 760px) {
+  .intro-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .intro-text {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .intro-header {
+    width: 100%;
+  }
+  .intro-ems-svg,
+  .footer-ems-svg {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .intro-cart-badge {
+    width: 70px;
+    height: 40px;
+  }
+  .intro-cart {
+    width: 30px;
+  }
+  .intro-badge {
+    font-size: 24px;
+  }
+}
