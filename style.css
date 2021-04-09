@@ -1,4 +1,5 @@
 :root {
+  --white: white;
   --mint: #ffe9d6;
   --red: #ff0000;
   --orange: #ff7a00;
@@ -36,17 +37,18 @@ body {
 .intro-cart-badge {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   background-color: var(--orange);
-  border-radius: 40%;
-  width: 90px;
-  height: 50px;
+  border-radius: 40px;
+  width: 80px;
+  padding: 5px;
 }
 .intro-cart {
-  width: 40px;
+  width: 35px;
+  margin-right: 8px;
 }
 .intro-badge {
-  font-size: 30px;
+  font-size: 26px;
   color: var(--mint);
 }
 
@@ -140,7 +142,6 @@ body {
   border-top-right-radius: var(--shop-card-image-radius);
 }
 .shop-card:hover .shop-card-hover {
-  /* display: block; */
   opacity: 1;
 }
 .shop-card-title {
@@ -162,6 +163,7 @@ body {
   border-radius: 10px;
   width: 200px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 .shop-card-hover {
   position: absolute;
@@ -198,6 +200,76 @@ body {
 .footer-text {
   text-align: right;
 }
+
+/* ### SHOPPING CART SECTION ### */
+
+.shopping-cart {
+  position: fixed;
+  top: 40px;
+  left: 34%;
+  background-color: var(--white);
+  padding: 10px;
+}
+.shopping-cart-th,
+.shopping-cart-td {
+  padding: 5px 20px 5px 5px;
+  text-align: left;
+}
+.shopping-cart-num {
+  text-align: center;
+}
+.shopping-cart-quantity {
+  display: flex;
+}
+.shopping-cart-quantity-num {
+  margin: 0 5px;
+}
+.shopping-cart-btn {
+  background-color: var(--brown);
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.shopping-cart-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.shopping-cart-input {
+  margin: 5px;
+  padding: 5px;
+  width: 70%;
+  font-size: 15px;
+  outline: none;
+  border: 1px solid var(--orange);
+  background-color: var(--mint);
+}
+.shopping-cart-input:focus {
+  border: 2px solid var(--orange);
+}
+.shopping-cart-amount-div {
+  text-align: center;
+  font-weight: bold;
+}
+.shopping-cart-action {
+  text-align: right;
+}
+.shopping-cart-btn.btn-1 {
+  padding: 9px 25px;
+  background-color: var(--mint);
+}
+.shopping-cart-btn.btn-2 {
+  padding: 9px 25px;
+  color: var(--white);
+}
+
+/* ### SUMMARY SECTION ### */
+.summary.shopping-cart {
+  top: 400px;
+}
+
 /* ### MEDIA QUERIES ### */
 
 @media screen and (max-width: 760px) {
@@ -222,8 +294,7 @@ body {
 
 @media screen and (max-width: 330px) {
   .intro-cart-badge {
-    width: 70px;
-    height: 40px;
+    width: 60px;
   }
   .intro-cart {
     width: 30px;
