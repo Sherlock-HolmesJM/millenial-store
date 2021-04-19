@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>e-Commerce Website</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
   </head>
   <body>
     <section id="intro" class="intro">
@@ -56,93 +57,103 @@
     <section id="shop" class="shop">
       <h2 class="shop-title">OUR gadgets</h2>
       <div class="shop-cards">
-        <div class="shop-card">
-          <img
-            class="shop-card-image"
-            src="./images/product1.png"
-            alt="product1"
-          />
-          <h3 class="shop-card-title">SAMSUNG TV</h3>
-          <button class="shop-card-btn">ADD TO CART</button>
-          <div class="shop-card-hover">
-            <h2 class="shop-card-hover-title">Price</h2>
-            <h2 class="shop-card-hover-price">₦250,000</h2>
+        <template class="shop-card">
+          <div class="shop-card-image-div">
+            <img
+              class="shop-card-image"
+              src="./images/product1.png"
+              alt="samsung tv"
+            />
+            <div class="shop-card-hover">
+              <h2 class="shop-card-hover-title">Price</h2>
+              <h2 class="shop-card-hover-price">₦250,000</h2>
+            </div>
           </div>
-        </div>
+          <h3 class="shop-card-title">SAMSUNG TV</h3>
+          <button class="shop-card-btn" data-index="1">ADD TO CART</button>
+        </template>
       </div>
     </section>
 
-    <section class="shopping-cart">
-      <div class="shopping-cart-item">
-        <table class="shopping-cart-table">
-          <thead class="shopping-cart-thead">
-            <th class="shopping-cart-th">S/N</th>
-            <th class="shopping-cart-th">Item</th>
-            <th class="shopping-cart-th">Price</th>
-            <th class="shopping-cart-th">Quantity</th>
-            <th class="shopping-cart-th"></th>
+    <div class="shopping-cart-container">
+      <section class="shopping-cart">
+        <div class="shopping-cart-item">
+          <table class="shopping-cart-table">
+            <thead class="shopping-cart-thead">
+              <th class="shopping-cart-th">S/N</th>
+              <th class="shopping-cart-th">Item</th>
+              <th class="shopping-cart-th">Price</th>
+              <th class="shopping-cart-th">Quantity</th>
+              <th class="shopping-cart-th"></th>
+            </thead>
+            <tbody class="shopping-cart-tbody">
+              <!-- <template>
+                <td class="shopping-cart-td shopping-cart-num">1</td>
+                <td class="shopping-cart-td">Shoe</td>
+                <td class="shopping-cart-td">₦20,000</td>
+                <td class="shopping-cart-td shopping-cart-quantity">
+                  <button class="shopping-cart-btn">A</button>
+                  <label for="" class="shopping-cart-quantity-num">1</label>
+                  <button class="shopping-cart-btn">R</button>
+                </td>
+                <td class="shopping-cart-td">
+                  <button class="shopping-cart-btn">X</button>
+                </td>
+              </template> -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="shopping-cart-details">
+          <form action="" class="shopping-cart-form">
+            <input type="text" placeholder="name" class="shopping-cart-input" />
+            <input type="text" placeholder="name" class="shopping-cart-input" />
+            <input type="text" placeholder="name" class="shopping-cart-input" />
+          </form>
+        </div>
+
+        <div class="shopping-cart-amount-div">
+          <p>Total Amount to be Paid</p>
+          <p class="shopping-cart-amount">₦0</p>
+        </div>
+
+        <div class="shopping-cart-action">
+          <button class="shopping-cart-btn btn-1">Continue Shopping</button>
+          <button class="shopping-cart-btn btn-2">Checkout</button>
+        </div>
+      </section>
+    </div>
+
+    <template class="summary-container">
+      <section class="summary">
+        <h4 class="summary-text">
+          Thank you, <span class="summary-name">Ibrahim</span>, your order has
+          been received
+        </h4>
+
+        <h1>ICON</h1>
+
+        <p>Summary</p>
+
+        <table class="summary-table">
+          <thead class="summary-thead">
+            <th class="summary-th">S/N</th>
+            <th class="summary-th summary-item">Item</th>
+            <th class="summary-th">Quantity</th>
           </thead>
           <tbody>
             <tr>
-              <td class="shopping-cart-td shopping-cart-num">1</td>
-              <td class="shopping-cart-td">Shoe</td>
-              <td class="shopping-cart-td">₦20,000</td>
-              <td class="shopping-cart-td shopping-cart-quantity">
-                <button class="shopping-cart-btn">A</button>
-                <label for="" class="shopping-cart-quantity-num">1</label>
-                <button class="shopping-cart-btn">R</button>
-              </td>
-              <td class="shopping-cart-td">
-                <button class="shopping-cart-btn">Remove</button>
-              </td>
+              <td class="summary-td summary-num">1</td>
+              <td class="summary-td">Shoe</td>
+              <td class="summary-td">₦20,000</td>
             </tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="shopping-cart-details">
-        <form action="" class="shopping-cart-form">
-          <input type="text" placeholder="name" class="shopping-cart-input" />
-          <input type="text" placeholder="name" class="shopping-cart-input" />
-          <input type="text" placeholder="name" class="shopping-cart-input" />
-        </form>
-      </div>
-
-      <div class="shopping-cart-amount-div">
-        <p>Total Amount to be Paid</p>
-        <p class="shopping-cart-amount">₦98,000</p>
-      </div>
-
-      <div class="shopping-cart-action">
-        <button class="shopping-cart-btn btn-1">Continue Shopping</button>
-        <button class="shopping-cart-btn btn-2">Checkout</button>
-      </div>
-    </section>
-
-    <section class="summary shopping-cart">
-      <p class="summary-text">
-        Thank you, <span>Ibrahim</span>, your order has been received
-      </p>
-      <h3>Summary</h3>
-
-      <table class="shopping-cart-table">
-        <thead class="shopping-cart-thead">
-          <th class="shopping-cart-th">S/N</th>
-          <th class="shopping-cart-th">Item</th>
-          <th class="shopping-cart-th">Quantity</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="shopping-cart-td shopping-cart-num">1</td>
-            <td class="shopping-cart-td">Shoe</td>
-            <td class="shopping-cart-td">₦20,000</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="summary-action">
-        <button class="shopping-cart-btn btn-2">Checkout</button>
-      </div>
-    </section>
+        <div class="summary-action">
+          <button class="summary-btn">Ok</button>
+        </div>
+      </section>
+    </template>
 
     <footer class="footer">
       <img src="./images/EMS.svg" class="footer-ems-svg" alt="ems svg" />
