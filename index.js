@@ -4,12 +4,16 @@ const elem = {
   cart: document.querySelector('.shopping-cart-container'),
   closeCart: document.querySelector('.shopping-cart-btn.btn-1'),
   addToCartButtons: document.querySelectorAll('.shop-card-btn'),
-  cardButton: (productID) =>
-    document.getElementById('shop-card-btn-' + productID),
   shopCards: document.querySelector('.shop-cards'),
   shoppingCartItems: document.querySelector('.shopping-cart-tbody'),
   shoppingCartAmount: document.querySelector('.shopping-cart-amount'),
   amountElems: () => document.querySelectorAll('.shopping-cart-item-amount'),
+  cardButton: (productID) =>
+    document.getElementById('shop-card-btn-' + productID),
+  itemPrice: (productID) =>
+    document.querySelector(`.shopping-cart-item-amount.${productID}`),
+  itemCount: (productID) =>
+    document.querySelector(`.shopping-cart-quantity-num.${productID}`),
 };
 
 addShopCards();
@@ -19,14 +23,17 @@ addShopCards();
 // ----- Event Listeners ----- //
 
 elem.shoppingCartItems.addEventListener('click', function (event) {
-  const { dataset } = event.target;
-  if (dataset.delete) {
-    const cardButton = elem.cardButton(dataset.id);
-    cardButton.dataset.index = '1';
-    cardButton.textContent = 'add to cart';
-    removeCartItem(getProduct(dataset.id));
-  } else if (dataset.increment) console.log(dataset.increment);
-  else if (dataset.decrement) console.log(dataset.decrement);
+  const { id, increment, decrement, delete: del } = event.target.dataset;
+
+  if (del) {
+    const cardButton = elem.cardButton(id);
+    removeCartItem(getProduct(id));
+    updateCardButton(cardButton, '1');
+  } else if (increment) {
+    updateItemPrice(id, '+');
+  } else if (decrement) {
+    updateItemPrice(id, '-');
+  }
 });
 
 elem.cartBadge.addEventListener('click', function (event) {
@@ -44,19 +51,42 @@ elem.shopCards.addEventListener('click', function (event) {
 
   if (event.target.dataset.index === '1') {
     addCartItem(getCartItem(product));
-
-    event.target.textContent = 'Remove from cart';
-    event.target.dataset.index = '2';
+    updateCardButton(event.target, '2');
   } else {
     removeCartItem(product);
-    event.target.textContent = 'add to cart';
-    event.target.dataset.index = '1';
+    updateCardButton(event.target, '1');
   }
 });
 
 // ----- View Controller Functions ----- //
 // ----- View Controller Functions ----- //
 // ----- View Controller Functions ----- //
+
+function updateItemCount(productID, param = '+') {
+  const el = elem.itemCount(productID);
+  let count = parseInt(el.textContent);
+  count = param === '+' ? count + 1 : count - 1;
+  el.textContent = count < 1 ? 1 : count;
+}
+
+function updateItemPrice(productID, param = '+') {
+  const { price } = getProduct(productID);
+
+  if (!price) return;
+
+  const el = elem.itemPrice(productID);
+  const oldPrice = parsePrice(el.textContent);
+  const newPrice = param === '+' ? oldPrice + price : oldPrice - price;
+  el.textContent = formatPrice(newPrice === 0 ? price : newPrice);
+
+  updateItemCount(productID, param);
+  if (newPrice > 0) updateTotalAmount();
+}
+
+function updateCardButton(btn, index) {
+  btn.dataset.index = index;
+  btn.textContent = index === '1' ? 'add to cart' : 'remove from cart';
+}
 
 function updateTotalAmount() {
   const amount = Array.from(elem.amountElems()).reduce(
@@ -66,26 +96,25 @@ function updateTotalAmount() {
   elem.shoppingCartAmount.textContent = formatPrice(amount);
 }
 
-function incrementBadgeCount() {
+/**
+ *
+ * @param param + | -
+ */
+function updateBadgeCount(param = '+') {
   const count = parseInt(elem.badgeCount.textContent);
-  elem.badgeCount.textContent = count + 1;
-}
-
-function decrementBadgeCount() {
-  const count = parseInt(elem.badgeCount.textContent);
-  elem.badgeCount.textContent = count - 1;
+  elem.badgeCount.textContent = param === '+' ? count + 1 : count - 1;
 }
 
 function addCartItem(cartItem) {
   elem.shoppingCartItems.insertAdjacentHTML('beforeend', cartItem);
-  incrementBadgeCount();
+  updateBadgeCount('+');
   updateTotalAmount();
 }
 
 function removeCartItem(product) {
   const item = document.getElementById('shopping-cart-item-' + product.id);
   item.remove();
-  decrementBadgeCount();
+  updateBadgeCount('-');
   updateTotalAmount();
 }
 
@@ -220,17 +249,17 @@ function getCartItem(product) {
     <tr id="shopping-cart-item-${product.id}" class="shopping-cart-item">
       <td class="shopping-cart-td shopping-cart-num">${product.index}</td>
       <td class="shopping-cart-td">${product.name}</td>
-      <td class="shopping-cart-td shopping-cart-item-amount">${formatPrice(
-        product.price
-      )}</td>
+      <td class="shopping-cart-td shopping-cart-item-amount ${
+        product.id
+      }">${formatPrice(product.price)}</td>
       <td class="shopping-cart-td shopping-cart-quantity">
-        <button class="shopping-cart-btn" data-increment='1' data-id="${
-          product.id
-        }">A</button>
-        <label for="" class="shopping-cart-quantity-num">1</label>
         <button class="shopping-cart-btn" data-decrement='1' data-id="${
           product.id
-        }">R</button>
+        }">-</button>
+        <label class="shopping-cart-quantity-num ${product.id}">1</label>
+        <button class="shopping-cart-btn" data-increment='1' data-id="${
+          product.id
+        }">+</button>
       </td>
       <td class="shopping-cart-td">
         <button class="shopping-cart-btn"
