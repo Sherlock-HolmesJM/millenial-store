@@ -1,8 +1,10 @@
 const elem = {
+  body: document.getElementById('body'),
   badgeCount: document.querySelector('.intro-badge'),
   cartBadge: document.querySelector('.intro-cart'),
   cart: document.querySelector('.shopping-cart-container'),
   closeCart: document.querySelector('.shopping-cart-btn.btn-1'),
+  checkout: document.querySelector('.shopping-cart-btn.checkout'),
   addToCartButtons: document.querySelectorAll('.shop-card-btn'),
   shopCards: document.querySelector('.shop-cards'),
   shoppingCartItems: document.querySelector('.shopping-cart-tbody'),
@@ -22,6 +24,18 @@ addShopCards();
 // ----- Event Listeners ----- //
 // ----- Event Listeners ----- //
 
+function closeCart({ target }) {
+  if (target.closest('.intro-cart-badge')) return;
+  if (target.matches('.shop-card-btn')) return;
+  if (target.matches('.shopping-cart-btn')) return;
+  if (target.closest('.shopping-cart')) return;
+  showCart(false);
+}
+
+elem.checkout.addEventListener('click', function (event) {
+  // showCart(false);
+});
+
 elem.shoppingCartItems.addEventListener('click', function (event) {
   const { id, increment, decrement, delete: del } = event.target.dataset;
 
@@ -37,11 +51,12 @@ elem.shoppingCartItems.addEventListener('click', function (event) {
 });
 
 elem.cartBadge.addEventListener('click', function (event) {
-  elem.cart.style.display = 'flex';
+  showCart(true);
 });
 
-elem.closeCart.addEventListener('click', function (event) {
-  elem.cart.style.display = 'none';
+elem.body.addEventListener('click', closeCart);
+elem.closeCart.addEventListener('click', function () {
+  showCart(false);
 });
 
 elem.shopCards.addEventListener('click', function (event) {
@@ -62,11 +77,19 @@ elem.shopCards.addEventListener('click', function (event) {
 // ----- View Controller Functions ----- //
 // ----- View Controller Functions ----- //
 
+function showCart(show = true) {
+  elem.cart.style.display = show ? 'flex' : 'none';
+}
+
 function updateItemCount(productID, param = '+') {
   const el = elem.itemCount(productID);
   let count = parseInt(el.textContent);
   count = param === '+' ? count + 1 : count - 1;
   el.textContent = count < 1 ? 1 : count;
+  if (count < 1)
+    alert(
+      'You cannot have less than one item. If you wish to remove the item, click Remove.'
+    );
 }
 
 function updateItemPrice(productID, param = '+') {

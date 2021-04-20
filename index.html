@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="index.js" defer></script>
   </head>
-  <body>
+  <body id="body">
     <section id="intro" class="intro">
       <header class="intro-header">
         <img src="./images/EMS.svg" class="intro-ems-svg" alt="ems svg" />
@@ -105,10 +105,25 @@
         </div>
 
         <div class="shopping-cart-details">
-          <form action="" class="shopping-cart-form">
-            <input type="text" placeholder="name" class="shopping-cart-input" />
-            <input type="text" placeholder="name" class="shopping-cart-input" />
-            <input type="text" placeholder="name" class="shopping-cart-input" />
+          <form class="shopping-cart-form">
+            <input
+              type="text"
+              placeholder="Name"
+              class="shopping-cart-input"
+              required
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              class="shopping-cart-input"
+              required
+            />
+            <input
+              type="phone"
+              placeholder="Phone number"
+              class="shopping-cart-input"
+              required
+            />
           </form>
         </div>
 
@@ -119,7 +134,9 @@
 
         <div class="shopping-cart-action">
           <button class="shopping-cart-btn btn-1">Continue Shopping</button>
-          <button class="shopping-cart-btn btn-2">Checkout</button>
+          <button type="submit" class="shopping-cart-btn checkout btn-2">
+            Checkout
+          </button>
         </div>
       </section>
     </div>
