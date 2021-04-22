@@ -4,11 +4,11 @@
   --red: #ff0000;
   --orange: #ff7a00;
   --brown: #ff9a3d;
-  --color-1: #ffcd9e;
+  --color-1: #f7cca4;
   --black: black;
   --bd: 1px solid black;
   --trans-black: rgba(0, 0, 0, 0.637);
-  --shop-card-image-height: 250px;
+  --shop-card-image-height: 260px;
   --shop-card-image-radius: 15px;
 }
 
@@ -134,15 +134,11 @@ body {
   justify-content: center;
 }
 .shop-card {
-  margin: 10px;
-  width: 252px;
+  margin: 15px;
+  width: 270px;
   text-align: center;
-  background-color: var(--mint);
   border-top-left-radius: var(--shop-card-image-radius);
   border-top-right-radius: var(--shop-card-image-radius);
-}
-.shop-card:hover .shop-card-hover {
-  opacity: 1;
 }
 .shop-card-title {
   margin: 5px 0 17px 0;
@@ -150,6 +146,9 @@ body {
 .shop-card-image-div {
   position: relative;
   height: var(--shop-card-image-height);
+}
+.shop-card-image-div:hover .shop-card-hover {
+  opacity: 1;
 }
 .shop-card-image {
   width: 100%;
@@ -259,12 +258,27 @@ body {
 .shopping-cart-input:focus {
   border: 2px solid var(--orange);
 }
+.shopping-cart-input-label {
+  margin-top: -3px;
+  margin-bottom: 8px;
+  color: red;
+  font-size: 12px;
+  font-weight: bold;
+}
 .shopping-cart-amount-div {
   text-align: center;
   font-weight: bold;
 }
 .shopping-cart-action {
   text-align: right;
+}
+.shopping-cart-icon {
+  width: 25px;
+  background-color: var(--orange);
+  font-size: 14px;
+  text-align: center;
+  border-radius: 7px;
+  color: var(--white);
 }
 .shopping-cart-btn {
   background-color: var(--orange);
@@ -273,6 +287,9 @@ body {
   border: none;
   outline: none;
   cursor: pointer;
+}
+.shopping-cart-btn.remove {
+  background-color: var(--color-1);
 }
 .shopping-cart-btn.btn-1 {
   padding: 9px 20px;
@@ -286,8 +303,8 @@ body {
 /* ### SUMMARY SECTION ### */
 .summary-container {
   position: relative;
-  width: 90%;
-  display: flex;
+  width: 100%;
+  display: none;
   justify-content: center;
 }
 .summary {
@@ -295,16 +312,25 @@ body {
   top: 44px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   background-color: var(--white);
   padding: 10px;
 }
 .summary-text {
+  width: 400px;
   text-transform: capitalize;
   margin: 5px 10px;
+  text-align: center;
 }
 .summary-name {
   color: var(--orange);
+}
+.summary-icon {
+  width: 180px;
+}
+.summary-p {
+  font-size: 24px;
 }
 .summary-table {
   align-self: flex-start;

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>e-Commerce Website</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="index.js" defer></script>
   </head>
   <body id="body">
     <section id="intro" class="intro">
@@ -15,7 +14,7 @@
         <ul class="intro-ul">
           <li class="intro-li"><a href="#intro">Intro</a></li>
           <li class="intro-li"><a href="#about">About</a></li>
-          <li class="intro-li"><a href="#shop">Shop</a></li>
+          <li class="intro-li"><a href="#shop">Shop </a></li>
         </ul>
         <div class="intro-cart-badge">
           <img src="./images/cart.svg" class="intro-cart" alt="cart svg" />
@@ -87,7 +86,7 @@
               <th class="shopping-cart-th"></th>
             </thead>
             <tbody class="shopping-cart-tbody">
-              <!-- <template>
+              <template>
                 <td class="shopping-cart-td shopping-cart-num">1</td>
                 <td class="shopping-cart-td">Shoe</td>
                 <td class="shopping-cart-td">₦20,000</td>
@@ -99,7 +98,7 @@
                 <td class="shopping-cart-td">
                   <button class="shopping-cart-btn">X</button>
                 </td>
-              </template> -->
+              </template>
             </tbody>
           </table>
         </div>
@@ -108,22 +107,34 @@
           <form class="shopping-cart-form">
             <input
               type="text"
-              placeholder="Name"
-              class="shopping-cart-input"
+              placeholder="Your Name"
+              class="shopping-cart-input name"
+              data-type="name"
               required
             />
+            <div class="shopping-cart-input-label name" data-type="name"></div>
             <input
               type="email"
-              placeholder="Email"
-              class="shopping-cart-input"
+              placeholder="Your Email"
+              class="shopping-cart-input email"
+              data-type="email"
               required
             />
+            <div
+              class="shopping-cart-input-label email"
+              data-type="email"
+            ></div>
             <input
-              type="phone"
-              placeholder="Phone number"
-              class="shopping-cart-input"
+              type="text"
+              placeholder="Your Phone Number"
+              class="shopping-cart-input phone"
+              data-type="phone"
               required
             />
+            <div
+              class="shopping-cart-input-label phone"
+              data-type="phone"
+            ></div>
           </form>
         </div>
 
@@ -141,16 +152,18 @@
       </section>
     </div>
 
-    <template class="summary-container">
+    <div class="summary-container">
       <section class="summary">
         <h4 class="summary-text">
           Thank you, <span class="summary-name">Ibrahim</span>, your order has
           been received
         </h4>
 
-        <h1>ICON</h1>
+        <h1>
+          <img class="summary-icon" src="images/check.svg" alt="check circle" />
+        </h1>
 
-        <p>Summary</p>
+        <p class="summary-p">Summary</p>
 
         <table class="summary-table">
           <thead class="summary-thead">
@@ -158,19 +171,19 @@
             <th class="summary-th summary-item">Item</th>
             <th class="summary-th">Quantity</th>
           </thead>
-          <tbody>
-            <tr>
+          <tbody class="summary-tbody">
+            <template>
               <td class="summary-td summary-num">1</td>
               <td class="summary-td">Shoe</td>
               <td class="summary-td">₦20,000</td>
-            </tr>
+            </template>
           </tbody>
         </table>
         <div class="summary-action">
           <button class="summary-btn">Ok</button>
         </div>
       </section>
-    </template>
+    </div>
 
     <footer class="footer">
       <img src="./images/EMS.svg" class="footer-ems-svg" alt="ems svg" />
@@ -178,5 +191,12 @@
         Designed and Crafted by Nkweke Ugochukwu - A Frontend Ninja
       </p>
     </footer>
+
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="./scripts/templates.js"></script>
+    <script src="./scripts/utilities.js"></script>
+    <script src="./scripts/data.js"></script>
+    <script src="./scripts/viewController.js"></script>
+    <script src="./scripts/script.js"></script>
   </body>
 </html>
