@@ -46,6 +46,17 @@ view.addShopCards(data.products);
 // ----- Event Listeners ----- //
 // ----- Event Listeners ----- //
 
+// Close cart when click on document.
+elements.body.addEventListener('click', function ({ target }) {
+  if (target.closest('.shopping-cart-td')) return;
+  if (target.closest('.shopping-cart-container')) return;
+  if (target.closest('.intro-cart-badge')) return;
+  if (target.matches('.shop-card-btn')) return;
+
+  view.showCart(false);
+});
+
+// Validate Form Inputs
 function validateInput(e) {
   const { value } = e.target;
   const { type } = e.target.dataset;
@@ -84,15 +95,7 @@ elements.getInput(formTypes.email).addEventListener('blur', validateInput);
 elements.getInput(formTypes.phone).addEventListener('blur', validateInput);
 elements.getInput(formTypes.phone).addEventListener('keypress', validatePhone);
 
-function closeCart({ target }) {
-  if (target.closest('.shopping-cart-td')) return;
-  if (target.closest('.shopping-cart-container')) return;
-  if (target.closest('.intro-cart-badge')) return;
-  if (target.matches('.shop-card-btn')) return;
-
-  view.showCart(false);
-}
-
+// Checkout button
 elements.checkout.addEventListener('click', function () {
   if (!form.valid) return;
   view.showCart(false);
@@ -123,11 +126,9 @@ elements.shoppingCartItems.addEventListener('click', function (event) {
   view.updateItems(data.getItems());
 });
 
-elements.cartBadge.addEventListener('click', function (event) {
+elements.cartBadge.addEventListener('click', function () {
   view.showCart(true);
 });
-
-elements.body.addEventListener('click', closeCart);
 
 elements.closeCart.addEventListener('click', function () {
   view.showCart(false);

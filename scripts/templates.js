@@ -4,6 +4,12 @@
 function htmlTemplates() {
   const utils = utilities(); // from utilities.js
 
+  return {
+    getCartItem,
+    getShopCard,
+    getSummaryItem,
+  };
+
   function getSummaryItem(item, index) {
     return `
     <tr>
@@ -66,10 +72,4 @@ function htmlTemplates() {
       </td>
     </tr>`;
   }
-
-  return {
-    getCartItem,
-    getShopCard,
-    getSummaryItem,
-  };
 }

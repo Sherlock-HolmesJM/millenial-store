@@ -1,4 +1,9 @@
 function utilities() {
+  return {
+    validateEmail,
+    formatPrice,
+  };
+
   // ----- Validator functions ----- //
 
   function validateEmail(email) {
@@ -6,9 +11,7 @@ function utilities() {
     return re.test(email);
   }
 
-  // ----- Formatter functions ----- //
-  // ----- Formatter functions ----- //
-  // ----- Formatter functions ----- //
+  // ----- Formatters ----- //
 
   /**
    *
@@ -16,7 +19,6 @@ function utilities() {
    * @param currency default ₦
    * @returns ₦98,000
    */
-
   function formatPrice(price, currency = '₦') {
     const head = `${price}`.split('');
     const tails = [];
@@ -30,9 +32,4 @@ function utilities() {
     if (tails.length === 0) return `${currency}${head.join('')}`;
     return `${currency}${head.join('')},${tails.reverse().join(',')}`;
   }
-
-  return {
-    validateEmail,
-    formatPrice,
-  };
 }
